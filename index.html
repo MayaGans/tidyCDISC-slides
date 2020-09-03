@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>tidyCDISC</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maya Gans, Cytel   Marly Gotti, Biogen   Nate Mockler, Biogen" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: inverse
+border: solid 50px white
+
+&lt;div class="my-logo-left"&gt;&lt;/div&gt;
+
+&lt;h1 style="font-size:100px;text-align:center;width:100%;padding-top:20%;margin-bottom:0;"&gt;
+tidyCDISC
+&lt;/h1&gt;
+
+&lt;p style="text-align:center;width:100%;padding-top:-10%;"&gt;
+An open source platform in R to analyze clinical trial data
+&lt;/p&gt;
+
+
+&lt;div class="authors" style="color:white;bottom:3%;left:3%;position:absolute;"&gt;
+Maya Gans, Cytel&lt;br/&gt;
+Marly Gotti, Biogen&lt;br/&gt;
+Nate Mockler, Biogen&lt;br/&gt;
+&lt;/div&gt;
+
+---
+
+
+
+&lt;div class="parent"&gt;
+
+  &lt;div class="wide"&gt;
+   &lt;div class="center-wide"&gt;
+     &lt;h1&gt;Agenda&lt;/h1&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="narrow"&gt;
+    &lt;div class="center-narrow"&gt;
+   &lt;h4&gt;Package description&lt;/h4&gt;
+   &lt;h4&gt;Data structure&lt;/h4&gt;
+   &lt;h4&gt;Use case&lt;/h4&gt;
+   &lt;h4&gt;Demo&lt;/h4&gt;
+   &lt;h4&gt;Conclusions&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+
+---
+
+&lt;div class="parent"&gt;
+
+  &lt;div class="wide"&gt;
+   &lt;div class="center-wide" style="padding-left:15%;"&gt;
+     &lt;h1&gt;tidyCDISC&lt;/h1&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="narrow"&gt;
+    &lt;div class="center-narrow" style="text-align:center;font-size:33px;"&gt;
+A shiny application to interactively create tables, figures, and patient profiles from ADaM data.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+
+---
+
+&lt;!-- ANIMATE SLIDE --&gt;
+&lt;div class="data-structure"&gt;
+&lt;h1 style="color:#F6F7F2;text-align:center;padding-top:10px;padding-bottom:10px;"&gt;Input Data Structure&lt;/h1&gt;
+
+&lt;svg version="1.1"
+             baseprofile="full"
+             width="1030" height="600"  
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1400 1120"
+          style="padding-left:5px;"&gt;
+
+
+  &lt;rect lass="dissapear" x="0" y="0" width="100" height="100" fill="var(--teal)" /&gt; 
+          
+&lt;rect x="0" y="110" width="100" height="100" class="turnteal" fill="grey"/&gt;
+          
+&lt;rect x="110" y="110" width="100" height="100" fill="grey" class="turnteal"/&gt;
+          
+&lt;rect x="0" y="220" width="100" height="100" class="turnteal" fill="grey"/&gt;
+          
+&lt;rect x="110" y="220" width="100" height="100" fill="grey" class="turnteal"/&gt;
+
+&lt;rect x="300" y="0" width="100" height="100" fill="var(--red)" class="dissapear"/&gt;
+   
+ &lt;rect class="dissapear"x="410" y="0" width="100" height="100" fill="var(--red)"/&gt;
+
+&lt;rect x="520" y="0" width="100" height="100" fill="var(--red)" class="dissapear"/&gt;
+          
+&lt;rect x="300" y="110" width="100" height="100" fill="grey" class="one2"/&gt;
+ &lt;rect x="410" y="110" width="100" height="100" fill="grey" class="three2"/&gt;
+&lt;rect x="520" y="110" width="100" height="100" fill="grey" class="four2"/&gt;    
+ &lt;rect x="300" y="220" width="100" height="100" fill="grey" class="one3"/&gt;
+ &lt;rect x="410" y="220" width="100" height="100" fill="grey" class="three3"/&gt;
+&lt;rect x="520" y="220" width="100" height="100" fill="grey" class="four3"/&gt;
+          
+&lt;rect x="710" y="0" width="100" height="100" class="one1" fill="var(--purple)"/&gt;
+          
+ &lt;rect x="820" y="0" width="100" height="100" fill="var(--purple)" class="three1"/&gt;         
+&lt;rect x="930" y="0" width="100" height="100" fill="var(--purple)" class="four1"/&gt;      
+&lt;rect x="710" y="110" width="100" height="100" fill="grey" class="dissapear"/&gt;
+&lt;rect x="710" y="220" width="100" height="100" class="dissapear" fill="grey"/&gt;
+          
+          
+&lt;rect x="930" y="110" width="100" height="100" fill="grey" class="moveleft"/&gt;    
+&lt;rect x="820" y="110" width="100" height="100" fill="grey" class="moveleft"/&gt;   
+&lt;rect x="820" y="220" width="100" height="100" fill="grey" class="moveleft"/&gt;
+&lt;rect x="930" y="220" width="100" height="100" fill="grey" class="moveleft"/&gt;
+          
+&lt;rect x="110" y="330" width="100" height="100" fill="none" class="appear" opacity:0.0 /&gt;
+&lt;rect x="110" y="440" width="100" height="100" fill="none" class="appear" opacity:0.0 /&gt;
+          
+&lt;rect x="110" y="0" width="100" height="100" fill="var(--teal)" class="two1"/&gt; 
+&lt;/svg&gt;
+          
+        &lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;script src="gsapcode.js"&gt;&lt;/script&gt;
+---
+
+&lt;div class="data-structure"&gt;
+&lt;h1 class="data" style="color:#F6F7F2;"&gt;Use Case&lt;/h1&gt;
+&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+
+&lt;div class="title-grid"&gt;
+&lt;div&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/style&gt;&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; meets with &lt;span style="color:#FF4F6B !important;"&gt;&lt;b&gt;Aika&lt;/b&gt;&lt;/span&gt; to create the statistical models to be used in the study.
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow1"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; asks &lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; to create the tables and figures using his and &lt;span style="color:#FF4F6B !important;"&gt;&lt;b&gt;Aika's&lt;/b&gt;&lt;/span&gt; specifications.
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow2"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; creates the tables and figures and sends them to &lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt;.
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow3"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; asks &lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt;  to make new tables based on the results.
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow2"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; creates the new tables and figures and sends them to &lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt;.
+
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow3"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; asks &lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; to revise the tables and figures…
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow2"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; creates the new tables and figures and sends them to &lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt;.
+
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrow3"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+After &lt;b&gt;MANY&lt;/b&gt; iterations between &lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; and &lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt;, &lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; shows the results to &lt;span style="color:#FF4F6B !important;"&gt;&lt;b&gt;Aika&lt;/b&gt;&lt;/span&gt;,
+&lt;/div&gt;
+
+&lt;img src="arrow.png" class="arrowLast"&gt;&lt;/img&gt;
+
+&lt;div class="title-grid second"&gt;
+&lt;div&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;position:relative;top:-20px;"&gt;
+ENTER&lt;br/&gt;
+&lt;span style="font-size:55px;font-face:bold;font-family:'Nanum Myeongjo';transform:scale(2);transition: all 100ms linear;"&gt;tidyCDISC&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="title-grid third"&gt;
+&lt;div&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF4F6B !important;"&gt;&lt;b&gt;Aika&lt;/b&gt;&lt;/span&gt; can use &lt;b&gt;tidyCDISC&lt;/b&gt; to explore the data easily with her domain expertise.
+&lt;/div&gt;
+
+&lt;div class="title-grid fourth"&gt;
+&lt;div&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#FF9CCE !important;"&gt;&lt;b&gt;Will&lt;/b&gt;&lt;/span&gt; can use &lt;b&gt;tidyCDISC&lt;/b&gt; to make tables and figured instantly, only asking &lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; to program the tables &lt;b&gt;ONCE&lt;/b&gt;.
+&lt;/div&gt;
+
+&lt;div class="title-grid fifth"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure users"&gt;
+&lt;div class="header"&gt;&lt;h1 style="color:#F6F7F2;"&gt;Clinical Trial Team&lt;/h1&gt;&lt;/div&gt;
+
+&lt;div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;"&gt;
+&lt;span style="color:#7A2E99 !important;"&gt;&lt;b&gt;Monica&lt;/b&gt;&lt;/span&gt; can use &lt;b&gt;tidyCDISC&lt;/b&gt; to do a preliminary QC before coding it in a validated software.
+&lt;/div&gt;
+
+&lt;div class="title-grid sixth"&gt;
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF4F6B !important;"&gt;Aika&lt;/div&gt;
+MD, Clinical Head
+&lt;/div&gt;
+
+&lt;div style="opacity:0.2;"&gt;
+&lt;div style="color:#FF9CCE !important;"&gt;Will&lt;/div&gt;Statistician
+&lt;/div&gt;
+
+&lt;div&gt;
+&lt;div style="color:#7A2E99 !important;"&gt;Monica&lt;/div&gt;Programmer
+&lt;/div&gt;
+
+&lt;div&gt;&lt;img style="opacity:0.2;" src="aika.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img style="opacity:0.2;" src="will.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="monica.png"&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+---
+
+&lt;div class="data-structure"&gt;
+&lt;h1 class="data" style="color:#F6F7F2;"&gt;DEMO&lt;/h1&gt;
+&lt;h4 class="data" style="color:#D4E9F0;"&gt;&lt;a href="https://nate884.shinyapps.io/tidyCDISC/"&gt;bit.ly/tidyCDISC&lt;/a&gt;&lt;/h3&gt;
+&lt;/div&gt;
+
+---
+
+&lt;div class="parent"&gt;
+
+  &lt;div class="wide"&gt;
+   &lt;div class="center-wide" style="padding-left:10%;"&gt;
+     &lt;h1&gt;Conclusions&lt;/h1&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="narrow"&gt;
+    &lt;div class="center-narrow" style="padding-top:25%;padding-bottom:25%; padding-left:10%;padding-right:0%;"&gt;
+      &lt;div style="font-size: 30px;padding-bottom:10%;"&gt;
+      Three major features:&lt;br/&gt;
+     &lt;br/&gt;
+
+&lt;div class="major-features"&gt;
+- Drag-and-drop Table Generator&lt;br/&gt;
+- Population Explorer&lt;br/&gt;
+- Patient Profile Viewer&lt;br/&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+
+
+---
+
+&lt;div class="parent"&gt;
+
+  &lt;div class="wide"&gt;
+   &lt;div class="center-wide" style="padding-left:17%;"&gt;
+     &lt;h1&gt;The Team&lt;/h1&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="narrow"&gt;
+    &lt;div class="center-narrow" style="padding-top: 20%;
+    padding-left: 20%;
+    padding-bottom: 0;
+    padding-right: 0;"&gt;
+ &lt;h4&gt;Aaron Clark&lt;/h4&gt;
+ &lt;h4&gt;Bob Engle&lt;/h4&gt;
+ &lt;h4&gt;Maya Gans&lt;/h4&gt;
+ &lt;h4&gt;Marly Gotti&lt;/h4&gt;
+ &lt;h4&gt;Robert Krajcik&lt;/h4&gt;
+ &lt;h4&gt;Nate Mockler&lt;h4&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+
+
+---
+
+&lt;div class="data-structure"&gt;
+&lt;h1 class="data" style="color:#F6F7F2;"&gt;Thank you!&lt;/h1&gt;
+
+&lt;p style="text-align:center;bottom:5px;position:absolute;"&gt;The code will be on GitHub soon. Until then you can email us at Nate.Mockler@biogen.com for the code!&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;style&gt;
+body {
+  font-family: 'Josefin Sans';
+}
+&lt;/style&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

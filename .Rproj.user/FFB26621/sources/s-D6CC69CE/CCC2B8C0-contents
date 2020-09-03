@@ -1,0 +1,21 @@
+---
+title: "tidyCDISC"
+subtitle: "An open source platform in R to analyze clinical trial data"
+author: "Maya Gans, Cytel <br/> Marly Gotti, Biogen"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [xaringan-themer.css, style.css]
+    includes:
+      in_header: head.html
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#053F61",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono"),
+)
+```

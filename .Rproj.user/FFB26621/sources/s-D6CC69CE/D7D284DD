@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1599077790601.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D7D284DD",
+    "lastKnownWriteTime" : 1599077801,
+    "last_content_update" : 1599077801376,
+    "path" : "~/Desktop/tidyCDISC_slides/gsapcode.js",
+    "project_path" : "gsapcode.js",
+    "properties" : {
+        "cursorPosition" : "22,53",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "js"
+}

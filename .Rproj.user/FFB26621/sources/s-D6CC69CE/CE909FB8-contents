@@ -1,0 +1,605 @@
+---
+title: "tidyCDISC"
+subtitle: "An open source platform in R to analyze clinical trial data"
+author: "Maya Gans, Cytel <br/> Marly Gotti, Biogen <br/> Nate Mockler, Biogen"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [xaringan-themer.css, style.css]
+    includes:
+      in_header: head.html
+    seal: false
+---
+
+class: inverse
+border: solid 50px white
+
+<div class="my-logo-left"></div>
+
+<h1 style="font-size:100px;text-align:center;width:100%;padding-top:20%;margin-bottom:0;">
+tidyCDISC
+</h1>
+
+<p style="text-align:center;width:100%;padding-top:-10%;">
+An open source platform in R to analyze clinical trial data
+</p>
+
+
+<div class="authors" style="color:white;bottom:3%;left:3%;position:absolute;">
+Maya Gans, Cytel<br/>
+Marly Gotti, Biogen<br/>
+Nate Mockler, Biogen<br/>
+</div>
+
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#053F61",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono"),
+)
+```
+
+<div class="parent">
+
+  <div class="wide">
+   <div class="center-wide">
+     <h1>Agenda</h1>
+   </div>
+  </div>
+  
+  <div class="narrow">
+    <div class="center-narrow">
+   <h4>Package description</h4>
+   <h4>Data structure</h4>
+   <h4>Use case</h4>
+   <h4>Demo</h4>
+   <h4>Conclusions</h4>
+    </div>
+  </div>
+  
+</div>
+
+---
+
+<div class="parent">
+
+  <div class="wide">
+   <div class="center-wide" style="padding-left:15%;">
+     <h1>tidyCDISC</h1>
+   </div>
+  </div>
+  
+  <div class="narrow">
+    <div class="center-narrow" style="text-align:center;font-size:33px;">
+A shiny application to interactively create tables, figures, and patient profiles from ADaM data.
+    </div>
+  </div>
+  
+</div>
+
+---
+
+<!-- ANIMATE SLIDE -->
+<div class="data-structure">
+<h1 style="color:#F6F7F2;text-align:center;padding-top:10px;padding-bottom:10px;">Input Data Structure</h1>
+
+<svg version="1.1"
+             baseprofile="full"
+             width="1030" height="600"  
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1400 1120"
+          style="padding-left:5px;">
+
+
+  <rect lass="dissapear" x="0" y="0" width="100" height="100" fill="var(--teal)" /> 
+          
+<rect x="0" y="110" width="100" height="100" class="turnteal" fill="grey"/>
+          
+<rect x="110" y="110" width="100" height="100" fill="grey" class="turnteal"/>
+          
+<rect x="0" y="220" width="100" height="100" class="turnteal" fill="grey"/>
+          
+<rect x="110" y="220" width="100" height="100" fill="grey" class="turnteal"/>
+
+<rect x="300" y="0" width="100" height="100" fill="var(--red)" class="dissapear"/>
+   
+ <rect class="dissapear"x="410" y="0" width="100" height="100" fill="var(--red)"/>
+
+<rect x="520" y="0" width="100" height="100" fill="var(--red)" class="dissapear"/>
+          
+<rect x="300" y="110" width="100" height="100" fill="grey" class="one2"/>
+ <rect x="410" y="110" width="100" height="100" fill="grey" class="three2"/>
+<rect x="520" y="110" width="100" height="100" fill="grey" class="four2"/>    
+ <rect x="300" y="220" width="100" height="100" fill="grey" class="one3"/>
+ <rect x="410" y="220" width="100" height="100" fill="grey" class="three3"/>
+<rect x="520" y="220" width="100" height="100" fill="grey" class="four3"/>
+          
+<rect x="710" y="0" width="100" height="100" class="one1" fill="var(--purple)"/>
+          
+ <rect x="820" y="0" width="100" height="100" fill="var(--purple)" class="three1"/>         
+<rect x="930" y="0" width="100" height="100" fill="var(--purple)" class="four1"/>      
+<rect x="710" y="110" width="100" height="100" fill="grey" class="dissapear"/>
+<rect x="710" y="220" width="100" height="100" class="dissapear" fill="grey"/>
+          
+          
+<rect x="930" y="110" width="100" height="100" fill="grey" class="moveleft"/>    
+<rect x="820" y="110" width="100" height="100" fill="grey" class="moveleft"/>   
+<rect x="820" y="220" width="100" height="100" fill="grey" class="moveleft"/>
+<rect x="930" y="220" width="100" height="100" fill="grey" class="moveleft"/>
+          
+<rect x="110" y="330" width="100" height="100" fill="none" class="appear" opacity:0.0 />
+<rect x="110" y="440" width="100" height="100" fill="none" class="appear" opacity:0.0 />
+          
+<rect x="110" y="0" width="100" height="100" fill="var(--teal)" class="two1"/> 
+</svg>
+          
+        </svg>
+</div>
+
+<script src="gsapcode.js"></script>
+---
+
+<div class="data-structure">
+<h1 class="data" style="color:#F6F7F2;">Use Case</h1>
+</div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+
+<div class="title-grid">
+<div>
+<div style="color:#FF4F6B !important;">Aika</style></div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF9CCE !important;"><b>Will</b></span> meets with <span style="color:#FF4F6B !important;"><b>Aika</b></span> to create the statistical models to be used in the study.
+</div>
+
+<img src="arrow.png" class="arrow1"></img>
+
+<div class="title-grid second">
+<div>
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img style="opacity:0.2;" src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF9CCE !important;"><b>Will</b></span> asks <span style="color:#7A2E99 !important;"><b>Monica</b></span> to create the tables and figures using his and <span style="color:#FF4F6B !important;"><b>Aika's</b></span> specifications.
+</div>
+
+<img src="arrow.png" class="arrow2"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#7A2E99 !important;"><b>Monica</b></span> creates the tables and figures and sends them to <span style="color:#FF9CCE !important;"><b>Will</b></span>.
+</div>
+
+<img src="arrow.png" class="arrow3"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF9CCE !important;"><b>Will</b></span> asks <span style="color:#7A2E99 !important;"><b>Monica</b></span>  to make new tables based on the results.
+</div>
+
+<img src="arrow.png" class="arrow2"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#7A2E99 !important;"><b>Monica</b></span> creates the new tables and figures and sends them to <span style="color:#FF9CCE !important;"><b>Will</b></span>.
+
+</div>
+
+<img src="arrow.png" class="arrow3"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF9CCE !important;"><b>Will</b></span> asks <span style="color:#7A2E99 !important;"><b>Monica</b></span> to revise the tables and figures…
+</div>
+
+<img src="arrow.png" class="arrow2"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#7A2E99 !important;"><b>Monica</b></span> creates the new tables and figures and sends them to <span style="color:#FF9CCE !important;"><b>Will</b></span>.
+
+</div>
+
+<img src="arrow.png" class="arrow3"></img>
+
+<div class="title-grid second">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+After <b>MANY</b> iterations between <span style="color:#FF9CCE !important;"><b>Will</b></span> and <span style="color:#7A2E99 !important;"><b>Monica</b></span>, <span style="color:#FF9CCE !important;"><b>Will</b></span> shows the results to <span style="color:#FF4F6B !important;"><b>Aika</b></span>,
+</div>
+
+<img src="arrow.png" class="arrowLast"></img>
+
+<div class="title-grid second">
+<div>
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img style="opacity:0.2;" src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;position:relative;top:-20px;">
+ENTER<br/>
+<span style="font-size:55px;font-face:bold;font-family:'Nanum Myeongjo';transform:scale(2);transition: all 100ms linear;">tidyCDISC</span>
+</div>
+
+<div class="title-grid third">
+<div>
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF4F6B !important;"><b>Aika</b></span> can use <b>tidyCDISC</b> to explore the data easily with her domain expertise.
+</div>
+
+<div class="title-grid fourth">
+<div>
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img src="aika.png"></img></div>
+<div><img style="opacity:0.2;" src="will.png"></img></div>
+<div><img style="opacity:0.2;" src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#FF9CCE !important;"><b>Will</b></span> can use <b>tidyCDISC</b> to make tables and figured instantly, only asking <span style="color:#7A2E99 !important;"><b>Monica</b></span> to program the tables <b>ONCE</b>.
+</div>
+
+<div class="title-grid fifth">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div>
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img src="will.png"></img></div>
+<div><img style="opacity:0.2;" src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure users">
+<div class="header"><h1 style="color:#F6F7F2;">Clinical Trial Team</h1></div>
+
+<div style="width:100;text-align:center;font-family:'Josefin Sans';color:#053F61;">
+<span style="color:#7A2E99 !important;"><b>Monica</b></span> can use <b>tidyCDISC</b> to do a preliminary QC before coding it in a validated software.
+</div>
+
+<div class="title-grid sixth">
+<div style="opacity:0.2;">
+<div style="color:#FF4F6B !important;">Aika</div>
+MD, Clinical Head
+</div>
+
+<div style="opacity:0.2;">
+<div style="color:#FF9CCE !important;">Will</div>Statistician
+</div>
+
+<div>
+<div style="color:#7A2E99 !important;">Monica</div>Programmer
+</div>
+
+<div><img style="opacity:0.2;" src="aika.png"></img></div>
+<div><img style="opacity:0.2;" src="will.png"></img></div>
+<div><img src="monica.png"></img></div>
+<div></div>
+
+---
+
+<div class="data-structure">
+<h1 class="data" style="color:#F6F7F2;">DEMO</h1>
+<h4 class="data" style="color:#D4E9F0;"><a href="https://nate884.shinyapps.io/tidyCDISC/">bit.ly/tidyCDISC</a></h3>
+</div>
+
+---
+
+<div class="parent">
+
+  <div class="wide">
+   <div class="center-wide" style="padding-left:10%;">
+     <h1>Conclusions</h1>
+   </div>
+  </div>
+  
+  <div class="narrow">
+    <div class="center-narrow" style="padding-top:25%;padding-bottom:25%; padding-left:10%;padding-right:0%;">
+      <div style="font-size: 30px;padding-bottom:10%;">
+      Three major features:<br/>
+     <br/>
+
+<div class="major-features">
+- Drag-and-drop Table Generator<br/>
+- Population Explorer<br/>
+- Patient Profile Viewer<br/>
+</div>
+    </div>
+  </div>
+  
+</div>
+
+
+---
+
+<div class="parent">
+
+  <div class="wide">
+   <div class="center-wide" style="padding-left:17%;">
+     <h1>The Team</h1>
+   </div>
+  </div>
+  
+  <div class="narrow">
+    <div class="center-narrow" style="padding-top: 20%;
+    padding-left: 20%;
+    padding-bottom: 0;
+    padding-right: 0;">
+ <h4>Aaron Clark</h4>
+ <h4>Bob Engle</h4>
+ <h4>Maya Gans</h4>
+ <h4>Marly Gotti</h4>
+ <h4>Robert Krajcik</h4>
+ <h4>Nate Mockler<h4>
+    </div>
+  </div>
+  
+</div>
+
+
+---
+
+<div class="data-structure">
+<h1 class="data" style="color:#F6F7F2;">Thank you!</h1>
+
+<p style="text-align:center;bottom:5px;position:absolute;">The code will be on GitHub soon. Until then you can email us at Nate.Mockler@biogen.com for the code!</p>
+</div>
+
+
+<style>
+body {
+  font-family: 'Josefin Sans';
+}
+</style>

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1599065196737.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F67FD365",
+    "lastKnownWriteTime" : 1599152590,
+    "last_content_update" : 1599152590228,
+    "path" : "~/Desktop/tidyCDISC_slides/style.css",
+    "project_path" : "style.css",
+    "properties" : {
+        "cursorPosition" : "10,12",
+        "scrollLine" : "5",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "css"
+}
