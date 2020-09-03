@@ -31,6 +31,7 @@ Marly Gotti, Biogen<br/>
 Nate Mockler, Biogen<br/>
 </div>
 
+<a style="bottom:3%;right:3%;position:absolute;" href="http://bit.ly/tidyCDISCslides">bit.ly/tidyCDISCslides</a>
 ---
 
 ```{r xaringan-themer, include = FALSE}
