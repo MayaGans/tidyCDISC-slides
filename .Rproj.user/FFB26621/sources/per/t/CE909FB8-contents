@@ -11,29 +11,6 @@ output:
     seal: false
 ---
 
-class: inverse
-border: solid 50px white
-
-<div class="my-logo-left"></div>
-
-<h1 style="font-size:100px;text-align:center;width:100%;padding-top:20%;margin-bottom:0;">
-tidyCDISC
-</h1>
-
-<p style="text-align:center;width:100%;padding-top:-10%;">
-An open source platform in R to analyze clinical trial data
-</p>
-
-
-<div class="authors" style="color:white;bottom:3%;left:3%;position:absolute;">
-Maya Gans, Cytel<br/>
-Marly Gotti, Biogen<br/>
-Nate Mockler, Biogen<br/>
-</div>
-
-<a style="bottom:3%;right:3%;position:absolute;" href="http://bit.ly/tidyCDISCslides">bit.ly/tidyCDISCslides</a>
----
-
 ```{r xaringan-themer, include = FALSE}
 library(xaringanthemer)
 style_mono_light(
@@ -44,25 +21,48 @@ style_mono_light(
 )
 ```
 
-<div class="parent">
+class: inverse
+border: solid 50px white
 
-  <div class="wide">
-   <div class="center-wide">
-     <h1>Agenda</h1>
-   </div>
-  </div>
-  
-  <div class="narrow">
-    <div class="center-narrow">
-   <h4>Package description</h4>
-   <h4>Data structure</h4>
-   <h4>Use case</h4>
-   <h4>Demo</h4>
-   <h4>Conclusions</h4>
-    </div>
-  </div>
-  
-</div>
+.my-logo-left[]
+
+.title[
+ # tidyCDISC
+]
+
+.subtitle[
+An open source platform in R to analyze clinical trial data
+]
+
+
+.authors[
+Maya Gans, Cytel<br/>
+Marly Gotti, Biogen<br/>
+Nate Mockler, Biogen<br/>
+]
+
+.link-to-slides[
+[bit.ly/tidyCDISC](http://bit.ly/tidyCDISCslides)
+]
+---
+
+.parent[
+
+ .wide[
+  .center-wide[
+  # Agenda
+  ]
+ ]
+  .narrow[
+   .center-narrow[
+   #### Package description
+   #### Data structure
+   #### Use case
+   #### Demo
+   #### Conclusions
+   ]
+  ]
+]
 
 ---
 

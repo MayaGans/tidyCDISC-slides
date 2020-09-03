@@ -5,6 +5,32 @@ body {
   font-family: 'Josefin Sans';
 }
 
+.title {
+  font-size:100px;
+  text-align:center;
+  width:100%;
+  padding-top:20%;
+  margin-bottom:0;
+}
+
+.subtitle {
+  text-align:center;
+  width:100%;
+  padding-top:-10%;
+}
+
+.authors {
+  bottom:3%;
+  left:3%;
+  position:absolute;
+}
+
+.link-to-slides {
+  bottom:3%;
+  right:3%;
+  position:absolute;
+}
+
 .my-logo-left {
 content: "";
     position: absolute;

@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "2767836785",
     "id" : "CE909FB8",
-    "lastKnownWriteTime" : 1599153415,
-    "last_content_update" : 1599153415979,
+    "lastKnownWriteTime" : 1599154010,
+    "last_content_update" : 1599154010310,
     "path" : "~/Desktop/tidyCDISC_slides/index.Rmd",
     "project_path" : "index.Rmd",
     "properties" : {
-        "cursorPosition" : "26,0",
-        "scrollLine" : "23"
+        "cursorPosition" : "74,8",
+        "scrollLine" : "65"
     },
     "read_only" : false,
     "read_only_alternatives" : [
